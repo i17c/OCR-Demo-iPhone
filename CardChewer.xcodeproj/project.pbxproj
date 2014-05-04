@@ -14,13 +14,24 @@
 		DA0B92E7191176FF0005028F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B92E6191176FF0005028F /* main.m */; };
 		DA0B92EB191177000005028F /* MRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B92EA191177000005028F /* MRAppDelegate.m */; };
 		DA0B92EE191177000005028F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA0B92EC191177000005028F /* Main.storyboard */; };
-		DA0B92F1191177000005028F /* MRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B92F0191177000005028F /* MRViewController.m */; };
+		DA0B92F1191177000005028F /* MRResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B92F0191177000005028F /* MRResultsViewController.m */; };
 		DA0B92F3191177000005028F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA0B92F2191177000005028F /* Images.xcassets */; };
 		DA0B92FA191177000005028F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0B92F9191177000005028F /* XCTest.framework */; };
 		DA0B92FB191177000005028F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0B92DA191176FF0005028F /* Foundation.framework */; };
 		DA0B92FC191177000005028F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0B92DE191176FF0005028F /* UIKit.framework */; };
 		DA0B9304191177000005028F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA0B9302191177000005028F /* InfoPlist.strings */; };
 		DA0B9306191177000005028F /* CardChewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B9305191177000005028F /* CardChewerTests.m */; };
+		DA0B9310191177420005028F /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0B930F191177420005028F /* TesseractOCR.framework */; };
+		DA0B9312191177840005028F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0B9311191177840005028F /* libstdc++.6.0.9.dylib */; };
+		DA0B93BC19117C260005028F /* test-hand.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93BB19117C260005028F /* test-hand.png */; };
+		DA0B93E01911873F0005028F /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93DF1911873F0005028F /* tessdata */; };
+		DA0B93E2191187910005028F /* image_sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93E1191187910005028F /* image_sample.jpg */; };
+		DA0B93E419118B1D0005028F /* test-card.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93E319118B1D0005028F /* test-card.png */; };
+		DA0B93E619118CBD0005028F /* steve-jobs-card.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93E519118CBD0005028F /* steve-jobs-card.jpg */; };
+		DA0B93EB1911C8510005028F /* UIBarButtonCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93EA1911C8510005028F /* UIBarButtonCamera@2x.png */; };
+		DA0B93EE1911C9DF0005028F /* MRPhotoChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */; };
+		DA32394B19153AA800CF3172 /* MRTesseract.m in Sources */ = {isa = PBXBuildFile; fileRef = DA32394A19153AA800CF3172 /* MRTesseract.m */; };
+		DAAB01D61911E77500396DD2 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAB01D51911E77500396DD2 /* placeholder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +56,28 @@
 		DA0B92E9191177000005028F /* MRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRAppDelegate.h; sourceTree = "<group>"; };
 		DA0B92EA191177000005028F /* MRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MRAppDelegate.m; sourceTree = "<group>"; };
 		DA0B92ED191177000005028F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DA0B92EF191177000005028F /* MRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRViewController.h; sourceTree = "<group>"; };
-		DA0B92F0191177000005028F /* MRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MRViewController.m; sourceTree = "<group>"; };
+		DA0B92EF191177000005028F /* MRResultsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRResultsViewController.h; sourceTree = "<group>"; };
+		DA0B92F0191177000005028F /* MRResultsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MRResultsViewController.m; sourceTree = "<group>"; };
 		DA0B92F2191177000005028F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DA0B92F8191177000005028F /* CardChewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardChewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0B92F9191177000005028F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DA0B9301191177000005028F /* CardChewerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CardChewerTests-Info.plist"; sourceTree = "<group>"; };
 		DA0B9303191177000005028F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DA0B9305191177000005028F /* CardChewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardChewerTests.m; sourceTree = "<group>"; };
+		DA0B930F191177420005028F /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = CardChewer/TesseractOCR.framework; sourceTree = "<group>"; };
+		DA0B9311191177840005028F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		DA0B93BB19117C260005028F /* test-hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-hand.png"; sourceTree = "<group>"; };
+		DA0B93DF1911873F0005028F /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		DA0B93E1191187910005028F /* image_sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample.jpg; sourceTree = "<group>"; };
+		DA0B93E319118B1D0005028F /* test-card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-card.png"; sourceTree = "<group>"; };
+		DA0B93E519118CBD0005028F /* steve-jobs-card.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "steve-jobs-card.jpg"; sourceTree = "<group>"; };
+		DA0B93EA1911C8510005028F /* UIBarButtonCamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIBarButtonCamera@2x.png"; sourceTree = "<group>"; };
+		DA0B93EC1911C9DF0005028F /* MRPhotoChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRPhotoChooserViewController.h; sourceTree = "<group>"; };
+		DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRPhotoChooserViewController.m; sourceTree = "<group>"; };
+		DA32394919153AA800CF3172 /* MRTesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTesseract.h; sourceTree = "<group>"; };
+		DA32394A19153AA800CF3172 /* MRTesseract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTesseract.m; sourceTree = "<group>"; };
+		DA3C01081914150B0058C962 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DAAB01D51911E77500396DD2 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA0B9312191177840005028F /* libstdc++.6.0.9.dylib in Frameworks */,
+				DA0B9310191177420005028F /* TesseractOCR.framework in Frameworks */,
 				DA0B92DD191176FF0005028F /* CoreGraphics.framework in Frameworks */,
 				DA0B92DF191176FF0005028F /* UIKit.framework in Frameworks */,
 				DA0B92DB191176FF0005028F /* Foundation.framework in Frameworks */,
@@ -101,6 +128,9 @@
 		DA0B92D9191176FF0005028F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA3C01081914150B0058C962 /* QuartzCore.framework */,
+				DA0B9311191177840005028F /* libstdc++.6.0.9.dylib */,
+				DA0B930F191177420005028F /* TesseractOCR.framework */,
 				DA0B92DA191176FF0005028F /* Foundation.framework */,
 				DA0B92DC191176FF0005028F /* CoreGraphics.framework */,
 				DA0B92DE191176FF0005028F /* UIKit.framework */,
@@ -112,11 +142,15 @@
 		DA0B92E0191176FF0005028F /* CardChewer */ = {
 			isa = PBXGroup;
 			children = (
+				DA32394819153A8D00CF3172 /* Models */,
+				DA0B93DF1911873F0005028F /* tessdata */,
 				DA0B92E9191177000005028F /* MRAppDelegate.h */,
 				DA0B92EA191177000005028F /* MRAppDelegate.m */,
 				DA0B92EC191177000005028F /* Main.storyboard */,
-				DA0B92EF191177000005028F /* MRViewController.h */,
-				DA0B92F0191177000005028F /* MRViewController.m */,
+				DA0B93EC1911C9DF0005028F /* MRPhotoChooserViewController.h */,
+				DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */,
+				DA0B92EF191177000005028F /* MRResultsViewController.h */,
+				DA0B92F0191177000005028F /* MRResultsViewController.m */,
 				DA0B92F2191177000005028F /* Images.xcassets */,
 				DA0B92E1191176FF0005028F /* Supporting Files */,
 			);
@@ -126,6 +160,12 @@
 		DA0B92E1191176FF0005028F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DAAB01D51911E77500396DD2 /* placeholder.png */,
+				DA0B93E519118CBD0005028F /* steve-jobs-card.jpg */,
+				DA0B93E1191187910005028F /* image_sample.jpg */,
+				DA0B93BB19117C260005028F /* test-hand.png */,
+				DA0B93EA1911C8510005028F /* UIBarButtonCamera@2x.png */,
+				DA0B93E319118B1D0005028F /* test-card.png */,
 				DA0B92E2191176FF0005028F /* CardChewer-Info.plist */,
 				DA0B92E3191176FF0005028F /* InfoPlist.strings */,
 				DA0B92E6191176FF0005028F /* main.m */,
@@ -150,6 +190,15 @@
 				DA0B9302191177000005028F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA32394819153A8D00CF3172 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DA32394919153AA800CF3172 /* MRTesseract.h */,
+				DA32394A19153AA800CF3172 /* MRTesseract.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,8 +279,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA0B92F3191177000005028F /* Images.xcassets in Resources */,
+				DA0B93E2191187910005028F /* image_sample.jpg in Resources */,
 				DA0B92E5191176FF0005028F /* InfoPlist.strings in Resources */,
+				DAAB01D61911E77500396DD2 /* placeholder.png in Resources */,
+				DA0B93EB1911C8510005028F /* UIBarButtonCamera@2x.png in Resources */,
+				DA0B93E01911873F0005028F /* tessdata in Resources */,
+				DA0B93E419118B1D0005028F /* test-card.png in Resources */,
+				DA0B93E619118CBD0005028F /* steve-jobs-card.jpg in Resources */,
 				DA0B92EE191177000005028F /* Main.storyboard in Resources */,
+				DA0B93BC19117C260005028F /* test-hand.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +307,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA0B92E7191176FF0005028F /* main.m in Sources */,
-				DA0B92F1191177000005028F /* MRViewController.m in Sources */,
+				DA0B93EE1911C9DF0005028F /* MRPhotoChooserViewController.m in Sources */,
+				DA0B92F1191177000005028F /* MRResultsViewController.m in Sources */,
+				DA32394B19153AA800CF3172 /* MRTesseract.m in Sources */,
 				DA0B92EB191177000005028F /* MRAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,9 +435,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CardChewer",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CardChewer/CardChewer-Prefix.pch";
 				INFOPLIST_FILE = "CardChewer/CardChewer-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CardChewer/TesseractOCR/lib",
+				);
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -390,9 +459,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CardChewer",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CardChewer/CardChewer-Prefix.pch";
 				INFOPLIST_FILE = "CardChewer/CardChewer-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CardChewer/TesseractOCR/lib",
+				);
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -457,6 +537,7 @@
 				DA0B930B191177000005028F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DA0B930C191177000005028F /* Build configuration list for PBXNativeTarget "CardChewerTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +546,7 @@
 				DA0B930E191177000005028F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
