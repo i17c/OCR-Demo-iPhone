@@ -15,7 +15,7 @@
 #define kTypeKey                     @"type"
 #define kTypeStartRow                1
 #define kTypeEndRow                  2
-
+#define LOG(fmt, ...) NSLog((@"%s " fmt), __PRETTY_FUNCTION__,##__VA_ARGS__)
 static NSString *kTypeCellID = @"typeCell";
 static NSString *kTypePickerID = @"typePicker";
 static NSString *kOtherCell = @"otherCell";
@@ -24,7 +24,7 @@ static NSString *kOtherCell = @"otherCell";
 
 @interface MRResultsViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+//@property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, strong) NSIndexPath *typePickerIndexPath;
@@ -42,20 +42,27 @@ static NSString *kOtherCell = @"otherCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     NSMutableDictionary *itemOne = [@{kTitleKey: @"Tap a cell to change its type:"} mutableCopy];
-    NSMutableDictionary *itemTwo = [@{kTitleKey: @"First Name", kTypeKey: [NSString string] } mutableCopy];
-    NSMutableDictionary *itemThree = [@{kTitleKey: @"Last Name", kTypeKey: [NSString string] } mutableCopy];
+    NSMutableDictionary *itemTwo = [@{kTitleKey: @"First Name", kTypeKey: [NSNumber numberWithInteger:0] } mutableCopy];
+    NSMutableDictionary *itemThree = [@{kTitleKey: @"Last Name", kTypeKey: [NSNumber numberWithInteger:0] } mutableCopy];
     NSMutableDictionary *itemFour = [@{ kTitleKey : @"(other item1)" } mutableCopy];
     NSMutableDictionary *itemFive = [@{ kTitleKey : @"(other item2)" } mutableCopy];
     self.dataArray = [NSArray arrayWithObjects:itemOne, itemTwo, itemThree, itemFour, itemFive, nil];
+    
     self.pickerValues = [NSArray arrayWithObjects: @"First Name", @"Last Name", @"Phone Number", @"Address", @"City", @"Country", @"Link", nil];
+    
     UITableViewCell *pickerViewCellToCheck = [self.tableView dequeueReusableCellWithIdentifier:kTypePickerID];
     self.typePickerCellRowHeight = pickerViewCellToCheck.frame.size.height;
+    
     MRTesseract *tesseract = [[MRTesseract alloc] init];
     NSString *recognizedText = [tesseract readImage: self.image];
+    
     NSLog(@"Line 45: Results View Controller => %@", recognizedText);
     NSLog(@"recongized text: %@", recognizedText);
     NSMutableDictionary *words = [self groupWordsByType: recognizedText];
+    
+//    self.imageView.image = self.image;
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,7 +109,9 @@ NSUInteger DeviceSystemMajorVersion() {
         if (targetedPicker != nil) {
             //we found a UIPicker so let's update the value
             NSDictionary *itemData = self.dataArray[self.typePickerIndexPath.row - 1];
-            [targetedPicker setValuesForKeysWithDictionary:itemData];
+            NSInteger rowIndex = [[itemData valueForKey:kTypeKey] integerValue];
+            [targetedPicker selectRow:rowIndex inComponent:0 animated:YES];
+//            [targetedPicker setValuesForKeysWithDictionary:itemData];
         }
     }
 }
@@ -154,7 +163,7 @@ NSUInteger DeviceSystemMajorVersion() {
         //this is the index path which contains the inline date picker
         cellID = kTypePickerID;
     } else if ([self indexPathHasType:indexPath]) {
-        cellID = kTypePickerID;
+        cellID = kTypeCellID;
     }
     
     cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -172,8 +181,10 @@ NSUInteger DeviceSystemMajorVersion() {
     //configure dat cell
     NSDictionary *itemData = self.dataArray[modelRow];
     if ([cellID isEqualToString:kTypeCellID]) {
+        LOG(@"Creating TypeCell");
         cell.textLabel.text = [itemData valueForKey:kTitleKey];
-        cell.textLabel.text = [itemData valueForKey:kTypeKey];
+        NSInteger pickerIndex = [[itemData valueForKey:kTypeKey] integerValue];
+        cell.detailTextLabel.text = [self.pickerValues objectAtIndex:pickerIndex];
     } else if ([cellID isEqualToString:kOtherCell]) {
         //this cell is just a stupid text label
         cell.textLabel.text = [itemData valueForKey:kTitleKey];
@@ -193,6 +204,7 @@ NSUInteger DeviceSystemMajorVersion() {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -214,13 +226,22 @@ NSUInteger DeviceSystemMajorVersion() {
  @param indexPath - the indexPath to reveal the UIDatePicker
  */
 -(void)toggleTypePickerForSelectedIndexPath:(NSIndexPath *)indexPath {
+
     [self.tableView beginUpdates];
+    
     NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:0]];
+    
     if ([self hasTypePickerForIndexPath:indexPath]) {
+    
+        //found a picker below it so remove it
         [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+
     } else {
+        // didn't find a picker below it, so we should insert it
         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    
     }
+    
     [self.tableView endUpdates];
 }
 
@@ -257,7 +278,7 @@ NSUInteger DeviceSystemMajorVersion() {
         self.typePickerIndexPath = [NSIndexPath indexPathForRow:indexPathToReveal.row + 1 inSection:0];
     }
     
-    //always deeselct the row
+    //always deselect the row
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.tableView endUpdates];
     
@@ -272,10 +293,16 @@ NSUInteger DeviceSystemMajorVersion() {
  @param indexPath - the indexPath which has the picker
  */
 - (void)displayExternalTypePickerForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *itemData = self.dataArray[indexPath.row];
-    [self.pickerView setValuesForKeysWithDictionary:itemData];
     
+    //first update the date picker's date value according to our model
+    NSDictionary *itemData = self.dataArray[indexPath.row];
+    NSInteger rowIndex = [[itemData valueForKey:kTypeKey] integerValue];
+    [self.pickerView selectRow:rowIndex inComponent:0 animated:YES];
+//    [self.pickerView setValuesForKeysWithDictionary:itemData];
+    
+    //the date picker might already be showing so don't add it tto our view
     if (self.pickerView.superview == nil) {
+        
         CGRect startFrame = self.pickerView.frame;
         CGRect endFrame = self.pickerView.frame;
         
@@ -312,6 +339,24 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSLog(@"selected %@", [self.pickerValues objectAtIndex:row]);
+    NSIndexPath *targetedCellPath = nil;
+    if ([self hasInlineTypePicker]) {
+        //inline picker = update the cell above the picker
+        targetedCellPath = [NSIndexPath indexPathForRow:self.typePickerIndexPath.row - 1 inSection:0];
+    } else {
+        //external picker = update the current cell
+        targetedCellPath = [self.tableView indexPathForSelectedRow];
+    }
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:targetedCellPath];
+    
+    NSMutableDictionary *itemData = self.dataArray[targetedCellPath.row];
+    NSInteger selectedIndexInt = (NSInteger)[thePickerView selectedRowInComponent:0];
+    NSNumber *selectedIndex = [NSNumber numberWithLong:selectedIndexInt];
+    [itemData setValue:selectedIndex forKey:kTypeKey];
+    
+    cell.detailTextLabel.text = [self.pickerValues objectAtIndex:selectedIndexInt];
+    
 }
 
 

@@ -446,7 +446,7 @@
 				INFOPLIST_FILE = "CardChewer/CardChewer-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/CardChewer/TesseractOCR/lib",
+					"$(SRCROOT)/CardChewer/TesseractOCR/lib/**",
 				);
 				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -470,7 +470,7 @@
 				INFOPLIST_FILE = "CardChewer/CardChewer-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/CardChewer/TesseractOCR/lib",
+					"$(SRCROOT)/CardChewer/TesseractOCR/lib/**",
 				);
 				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
