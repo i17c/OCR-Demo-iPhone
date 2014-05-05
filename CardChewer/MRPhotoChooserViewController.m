@@ -8,9 +8,7 @@
 
 #import "MRPhotoChooserViewController.h"
 #import "MRResultsViewController.h"
-
-#define kHelpTextBeforeImageSelected @"Please select a photo"
-#define kHelpTextAfterImageSelected @"Is this the right photo?"
+#import "MRTesseract.h"
 
 @interface MRPhotoChooserViewController ()
 @property (strong, nonatomic) UIImage *chosenImage;
@@ -19,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *helpLabel;
 @property (strong, nonatomic) IBOutlet UIButton *incorrectImageButton;
 @property (strong, nonatomic) IBOutlet UIButton *correctImageButton;
+@property (strong, nonatomic) NSMutableDictionary *dictionary;
 - (void)showImageButtonsAfterSelection:(bool)correctImage;
 - (IBAction)chooseImageButtonPressed:(id)sender;
 - (IBAction)correctImageButtonPressed:(id)sender;
@@ -27,15 +26,6 @@
 @end
 
 @implementation MRPhotoChooserViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (IBAction)chooseImageButtonPressed:(id)sender {
     NSLog(@"Image button pressed");
@@ -69,6 +59,9 @@
 #pragma mark after image is selected
 
 - (IBAction)correctImageButtonPressed:(id)sender {
+    MRTesseract *tesseract = [[MRTesseract alloc] init];
+    NSString *recognizedText = [tesseract readImage: self.chosenImage];
+    self.dictionary = [self groupWordsByType:recognizedText];
     [self performSegueWithIdentifier:@"showResults" sender:self];
 }
 - (IBAction)incorrectImageButtonPressed:(id)sender {
@@ -100,7 +93,36 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+#pragma mark NSDataDetector
+/*
+ Goes through each word in the text passed in and groups the words by type
+ e.g. phone numbers, links, postal codes, cities, countries, etc.
+ @param text - the text to be checked for the different types
+ */
+- (NSMutableDictionary *)groupWordsByType:(NSString *)text {
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    //If there is no text passed in/read by the ocr scanner, then return
+    //an empty dictionary otherwise the nsdatadetector will crash
+    if (text.length > 0) {
+        NSError *error = nil;
+        NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeAddress | NSTextCheckingTypePhoneNumber
+                                    | NSTextCheckingTypeLink error:&error];
+        
+        [detector enumerateMatchesInString:text
+                                   options:kNilOptions
+                                     range:NSMakeRange(0, [text length])
+                                usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                                    if (result.resultType == NSTextCheckingTypePhoneNumber) {
+                                        [dictionary setObject:[result phoneNumber] forKey:kPhoneNumberKey];
+                                    } else if (result.resultType == NSTextCheckingTypeLink) {
+                                        [dictionary setObject:[result URL] forKey:kLinkKey];
+                                    } else if (result.resultType == NSTextCheckingTypeAddress) {
+                                        [dictionary addEntriesFromDictionary:[result addressComponents]];
+                                    }
+                                }];
+    }
+    return dictionary;
+}
 
 #pragma mark - Navigation
 
@@ -111,6 +133,7 @@
     // Pass the selected object to the new view controller.
     MRResultsViewController *resultsViewController = (MRResultsViewController *)[segue destinationViewController];
     resultsViewController.image = self.chosenImage;
+    resultsViewController.dictionary = self.dictionary;
 }
 
 

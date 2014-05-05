@@ -10,4 +10,5 @@
 
 @interface MRResultsViewController : UIViewController
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSMutableDictionary *dictionary;
 @end

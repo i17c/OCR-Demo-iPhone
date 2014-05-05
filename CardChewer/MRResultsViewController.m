@@ -8,13 +8,7 @@
 
 #import "MRResultsViewController.h"
 #import "MRTesseract.h"
-//Picker
-#define kTypePickerAnimationDuration 0.40    // duration for the animaiton to slide the picker into view
-#define kTypePickerTag               99
-#define kTitleKey                    @"title"// key for obtaining the data source item's title
-#define kTypeKey                     @"type"
-#define kTypeStartRow                1
-#define kTypeEndRow                  2
+
 #define LOG(fmt, ...) NSLog((@"%s " fmt), __PRETTY_FUNCTION__,##__VA_ARGS__)
 static NSString *kTypeCellID = @"typeCell";
 static NSString *kTypePickerID = @"typePicker";
@@ -23,6 +17,7 @@ static NSString *kOtherCell = @"otherCell";
 #pragma mark -
 
 @interface MRResultsViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+
 @property (nonatomic, strong) NSArray *dataArray;
 //@property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -33,12 +28,13 @@ static NSString *kOtherCell = @"otherCell";
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *doneButton;
 @property (nonatomic, strong) NSArray *pickerValues;
 
-- (NSMutableDictionary *)groupWordsByType:(NSString *)text;
 @end
 
 #pragma mark -
 
 @implementation MRResultsViewController
+
+@synthesize dictionary, image;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,13 +50,11 @@ static NSString *kOtherCell = @"otherCell";
     
     UITableViewCell *pickerViewCellToCheck = [self.tableView dequeueReusableCellWithIdentifier:kTypePickerID];
     self.typePickerCellRowHeight = pickerViewCellToCheck.frame.size.height;
-    
-    MRTesseract *tesseract = [[MRTesseract alloc] init];
-    NSString *recognizedText = [tesseract readImage: self.image];
-    
-    NSLog(@"Line 45: Results View Controller => %@", recognizedText);
-    NSLog(@"recongized text: %@", recognizedText);
-    NSMutableDictionary *words = [self groupWordsByType: recognizedText];
+
+    NSLog(@"%@", dictionary);
+//    NSLog(@"Line 45: Results View Controller => %@", recognizedText);
+//    NSLog(@"recongized text: %@", recognizedText);
+//    NSMutableDictionary *words = [self groupWordsByType: recognizedText];
     
 //    self.imageView.image = self.image;
 }
@@ -336,7 +330,6 @@ NSUInteger DeviceSystemMajorVersion() {
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return [self.pickerValues objectAtIndex:row];
 }
-
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSLog(@"selected %@", [self.pickerValues objectAtIndex:row]);
     NSIndexPath *targetedCellPath = nil;
@@ -358,57 +351,4 @@ NSUInteger DeviceSystemMajorVersion() {
     cell.detailTextLabel.text = [self.pickerValues objectAtIndex:selectedIndexInt];
     
 }
-
-
-#pragma mark NSDataDetector
-/*
- Goes through each word in the text passed in and groups the words by type
- e.g. phone numbers, links, postal codes, cities, countries, etc.
- @param text - the text to be checked for the different types
- */
-- (NSMutableDictionary *)groupWordsByType:(NSString *)text {
-    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    //If there is no text passed in/read by the ocr scanner, then return
-    //an empty dictionary otherwise the nsdatadetector will crash
-    if (text.length > 0) {
-        NSError *error = nil;
-        NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeAddress | NSTextCheckingTypePhoneNumber
-                                    | NSTextCheckingTypeLink error:&error];
-        
-        [detector enumerateMatchesInString:text
-                                   options:kNilOptions
-                                     range:NSMakeRange(0, [text length])
-                                usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                                    NSString *key = [self convertResultTypeToString:result.resultType];
-                                    NSString *value = [text substringWithRange:result.range];
-                                    NSLog(@"%@ => %@", key, value);
-                                    [dictionary setObject:key forKey:value];
-                                }];
-    }
-    return dictionary;
-}
-
-/*
- Maps the enum's unsigned int to a string
- @param resultType - the unsigned int to check
- */
-- (NSString *)convertResultTypeToString:(unsigned int)resultType {
-    NSString *type = nil;
-    switch (resultType) {
-        case NSTextCheckingTypePhoneNumber:
-            type = @"Phone Number";
-            break;
-        case NSTextCheckingTypeAddress:
-            type = @"Address";
-            break;
-        case NSTextCheckingTypeLink:
-            type = @"Link";
-            break;
-        default:
-            type = @"Break";
-            break;
-    }
-    return type;
-}
-
 @end
