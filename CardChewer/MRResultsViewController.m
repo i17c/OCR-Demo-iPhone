@@ -16,9 +16,10 @@ static NSString *kOtherCell = @"otherCell";
 
 #pragma mark -
 
-@interface MRResultsViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface MRResultsViewController () <UITableViewDataSource, UITableViewDelegate,
+                                            UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 //@property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIPickerView *pickerView;
@@ -28,6 +29,8 @@ static NSString *kOtherCell = @"otherCell";
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *doneButton;
 @property (nonatomic, strong) NSArray *pickerValues;
 
+
+- (NSInteger)convertTypeKeyToTypeStringIndex:(id)typeKey;
 @end
 
 #pragma mark -
@@ -39,14 +42,23 @@ static NSString *kOtherCell = @"otherCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    NSMutableDictionary *itemOne = [@{kTitleKey: @"Tap a cell to change its type:"} mutableCopy];
-    NSMutableDictionary *itemTwo = [@{kTitleKey: @"First Name", kTypeKey: [NSNumber numberWithInteger:0] } mutableCopy];
-    NSMutableDictionary *itemThree = [@{kTitleKey: @"Last Name", kTypeKey: [NSNumber numberWithInteger:0] } mutableCopy];
+    
+    self.pickerValues = [NSArray arrayWithObjects: @"First Name", @"Last Name", @"Phone Number", @"Address", @"City", @"State", @"Country", @"Link", nil];
+    self.dataArray = [[NSMutableArray alloc] init];
+    NSMutableDictionary *itemOne = [@{kTitleKey: kHelpTextBeforeResultsAreVerified} mutableCopy];
+//    [self.dataArray addObject:itemOne];
+    for (id key in self.dictionary) {
+        NSInteger index = [self convertTypeKeyToTypeStringIndex:key];
+        if (index != NSNotFound) {
+            NSMutableDictionary *item = [@{kTitleKey: [self.dictionary objectForKey:key], kTypeKey: [NSNumber numberWithInteger:index] } mutableCopy];
+            [self.dataArray addObject:item];
+    
+        }
+    }
     NSMutableDictionary *itemFour = [@{ kTitleKey : @"(other item1)" } mutableCopy];
     NSMutableDictionary *itemFive = [@{ kTitleKey : @"(other item2)" } mutableCopy];
-    self.dataArray = [NSArray arrayWithObjects:itemOne, itemTwo, itemThree, itemFour, itemFive, nil];
-    
-    self.pickerValues = [NSArray arrayWithObjects: @"First Name", @"Last Name", @"Phone Number", @"Address", @"City", @"Country", @"Link", nil];
+    [self.dataArray addObject:itemFour];
+    [self.dataArray addObject:itemFive];
     
     UITableViewCell *pickerViewCellToCheck = [self.tableView dequeueReusableCellWithIdentifier:kTypePickerID];
     self.typePickerCellRowHeight = pickerViewCellToCheck.frame.size.height;
@@ -134,10 +146,12 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (BOOL)indexPathHasType:(NSIndexPath *)indexPath {
     BOOL hasType = NO;
-    
-    if ((indexPath.row == kTypeStartRow) ||
-        (indexPath.row == kTypeEndRow || ([self hasInlineTypePicker] && (indexPath.row == kTypeEndRow + 1))))
-    {
+    NSInteger lastRow = kTypePickerFirstRow + [self.dictionary count];
+//    if ((indexPath.row == kTypeStartRow) ||
+//        (indexPath.row == kTypeEndRow || ([self hasInlineTypePicker] && (indexPath.row == kTypeEndRow + 1))))
+//    {
+    if ((indexPath.row >= kTypePickerFirstRow && indexPath.row < lastRow) ||
+        ([self hasInlineTypePicker] && indexPath.row == lastRow + 1)){
         hasType = YES;
     }
     
@@ -350,5 +364,26 @@ NSUInteger DeviceSystemMajorVersion() {
     
     cell.detailTextLabel.text = [self.pickerValues objectAtIndex:selectedIndexInt];
     
+}
+
+- (NSInteger)convertTypeKeyToTypeStringIndex:(id)key {
+    NSInteger index = -1;
+    if ([key isEqualToString:@"First Name"])
+        index = 0;
+    else if ([key isEqualToString:kPhoneNumberKey])
+        index = 2;
+    else if (key == NSTextCheckingStreetKey)
+        index = 3;
+    else if (key == NSTextCheckingCityKey)
+        index = 4;
+    else if (key == NSTextCheckingStateKey)
+        index = 5;
+    else if (key == NSTextCheckingCountryKey)
+        index = 6;
+    else if ([key isEqualToString:kLinkKey])
+        index = 7;
+    else
+        index = NSNotFound;
+    return index;
 }
 @end

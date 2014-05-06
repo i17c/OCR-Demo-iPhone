@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-extern CGFloat const kTypePickerAnimationDuration;
+extern CGFloat   const kTypePickerAnimationDuration;
 extern NSInteger const kTypePickerTag;
-extern NSString * const kTitleKey;
-extern NSString * const kTypeKey;
-extern NSInteger const kTypeStartRow;
-extern NSInteger const kTypeEndRow;
-extern NSString * const kLinkKey;
-extern NSString * const kPhoneNumberKey;
+extern NSInteger const kTypePickerFirstRow;
 extern NSString * const kHelpTextBeforeImageSelected;
 extern NSString * const kHelpTextAfterImageSelected;
+extern NSString * const kHelpTextBeforeResultsAreVerified;
+extern NSString * const kPlaceholderImageFilename;
+extern NSString * const kOverlayGraphicFilename;
+extern NSString * const kTitleKey;
+extern NSString * const kTypeKey;
+extern NSString * const kLinkKey;
+extern NSString * const kPhoneNumberKey;

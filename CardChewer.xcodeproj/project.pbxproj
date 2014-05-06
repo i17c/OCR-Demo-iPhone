@@ -22,18 +22,12 @@
 		DA0B9306191177000005028F /* CardChewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B9305191177000005028F /* CardChewerTests.m */; };
 		DA0B9310191177420005028F /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0B930F191177420005028F /* TesseractOCR.framework */; };
 		DA0B9312191177840005028F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0B9311191177840005028F /* libstdc++.6.0.9.dylib */; };
-		DA0B93BC19117C260005028F /* test-hand.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93BB19117C260005028F /* test-hand.png */; };
 		DA0B93E01911873F0005028F /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93DF1911873F0005028F /* tessdata */; };
-		DA0B93E2191187910005028F /* image_sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93E1191187910005028F /* image_sample.jpg */; };
-		DA0B93E419118B1D0005028F /* test-card.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93E319118B1D0005028F /* test-card.png */; };
-		DA0B93E619118CBD0005028F /* steve-jobs-card.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93E519118CBD0005028F /* steve-jobs-card.jpg */; };
-		DA0B93EB1911C8510005028F /* UIBarButtonCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93EA1911C8510005028F /* UIBarButtonCamera@2x.png */; };
 		DA0B93EE1911C9DF0005028F /* MRPhotoChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */; };
+		DA11EA2E19188FB200C89528 /* MRCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA11EA2D19188FB200C89528 /* MRCameraOverlayView.m */; };
 		DA32394B19153AA800CF3172 /* MRTesseract.m in Sources */ = {isa = PBXBuildFile; fileRef = DA32394A19153AA800CF3172 /* MRTesseract.m */; };
 		DA831C31191857A0008B84F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA831C30191857A0008B84F6 /* Images.xcassets */; };
-		DA831C3319185801008B84F6 /* Green-Monster.png in Resources */ = {isa = PBXBuildFile; fileRef = DA831C3219185801008B84F6 /* Green-Monster.png */; };
 		DA831C3619185945008B84F6 /* MRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA831C3519185945008B84F6 /* MRConstants.m */; };
-		DAAB01D61911E77500396DD2 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAB01D51911E77500396DD2 /* placeholder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,22 +61,17 @@
 		DA0B9305191177000005028F /* CardChewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardChewerTests.m; sourceTree = "<group>"; };
 		DA0B930F191177420005028F /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = CardChewer/TesseractOCR.framework; sourceTree = "<group>"; };
 		DA0B9311191177840005028F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		DA0B93BB19117C260005028F /* test-hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-hand.png"; sourceTree = "<group>"; };
 		DA0B93DF1911873F0005028F /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		DA0B93E1191187910005028F /* image_sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample.jpg; sourceTree = "<group>"; };
-		DA0B93E319118B1D0005028F /* test-card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-card.png"; sourceTree = "<group>"; };
-		DA0B93E519118CBD0005028F /* steve-jobs-card.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "steve-jobs-card.jpg"; sourceTree = "<group>"; };
-		DA0B93EA1911C8510005028F /* UIBarButtonCamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIBarButtonCamera@2x.png"; sourceTree = "<group>"; };
 		DA0B93EC1911C9DF0005028F /* MRPhotoChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRPhotoChooserViewController.h; sourceTree = "<group>"; };
 		DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRPhotoChooserViewController.m; sourceTree = "<group>"; };
+		DA11EA2C19188FB100C89528 /* MRCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCameraOverlayView.h; sourceTree = "<group>"; };
+		DA11EA2D19188FB200C89528 /* MRCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCameraOverlayView.m; sourceTree = "<group>"; };
 		DA32394919153AA800CF3172 /* MRTesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTesseract.h; sourceTree = "<group>"; };
 		DA32394A19153AA800CF3172 /* MRTesseract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTesseract.m; sourceTree = "<group>"; };
 		DA3C01081914150B0058C962 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DA831C30191857A0008B84F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DA831C3219185801008B84F6 /* Green-Monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green-Monster.png"; sourceTree = "<group>"; };
 		DA831C3419185945008B84F6 /* MRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRConstants.h; sourceTree = "<group>"; };
 		DA831C3519185945008B84F6 /* MRConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRConstants.m; sourceTree = "<group>"; };
-		DAAB01D51911E77500396DD2 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,15 +136,9 @@
 		DA0B92E0191176FF0005028F /* CardChewer */ = {
 			isa = PBXGroup;
 			children = (
+				DA64D5FD191996FE00AE0901 /* View Controllers */,
+				DA11EA311918935A00C89528 /* Views */,
 				DA32394819153A8D00CF3172 /* Models */,
-				DA0B93DF1911873F0005028F /* tessdata */,
-				DA0B92E9191177000005028F /* MRAppDelegate.h */,
-				DA0B92EA191177000005028F /* MRAppDelegate.m */,
-				DA0B92EC191177000005028F /* Main.storyboard */,
-				DA0B93EC1911C9DF0005028F /* MRPhotoChooserViewController.h */,
-				DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */,
-				DA0B92EF191177000005028F /* MRResultsViewController.h */,
-				DA0B92F0191177000005028F /* MRResultsViewController.m */,
 				DA0B92E1191176FF0005028F /* Supporting Files */,
 			);
 			path = CardChewer;
@@ -164,13 +147,9 @@
 		DA0B92E1191176FF0005028F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DA831C3219185801008B84F6 /* Green-Monster.png */,
-				DAAB01D51911E77500396DD2 /* placeholder.png */,
-				DA0B93E519118CBD0005028F /* steve-jobs-card.jpg */,
-				DA0B93E1191187910005028F /* image_sample.jpg */,
-				DA0B93BB19117C260005028F /* test-hand.png */,
-				DA0B93EA1911C8510005028F /* UIBarButtonCamera@2x.png */,
-				DA0B93E319118B1D0005028F /* test-card.png */,
+				DA0B93DF1911873F0005028F /* tessdata */,
+				DA0B92E9191177000005028F /* MRAppDelegate.h */,
+				DA0B92EA191177000005028F /* MRAppDelegate.m */,
 				DA0B92E2191176FF0005028F /* CardChewer-Info.plist */,
 				DA0B92E3191176FF0005028F /* InfoPlist.strings */,
 				DA0B92E6191176FF0005028F /* main.m */,
@@ -200,6 +179,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DA11EA311918935A00C89528 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA0B92EC191177000005028F /* Main.storyboard */,
+				DA11EA2C19188FB100C89528 /* MRCameraOverlayView.h */,
+				DA11EA2D19188FB200C89528 /* MRCameraOverlayView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		DA32394819153A8D00CF3172 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +196,17 @@
 				DA32394A19153AA800CF3172 /* MRTesseract.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		DA64D5FD191996FE00AE0901 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DA0B93EC1911C9DF0005028F /* MRPhotoChooserViewController.h */,
+				DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */,
+				DA0B92EF191177000005028F /* MRResultsViewController.h */,
+				DA0B92F0191177000005028F /* MRResultsViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,17 +286,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA0B93E2191187910005028F /* image_sample.jpg in Resources */,
 				DA831C31191857A0008B84F6 /* Images.xcassets in Resources */,
 				DA0B92E5191176FF0005028F /* InfoPlist.strings in Resources */,
-				DAAB01D61911E77500396DD2 /* placeholder.png in Resources */,
-				DA0B93EB1911C8510005028F /* UIBarButtonCamera@2x.png in Resources */,
 				DA0B93E01911873F0005028F /* tessdata in Resources */,
-				DA0B93E419118B1D0005028F /* test-card.png in Resources */,
-				DA0B93E619118CBD0005028F /* steve-jobs-card.jpg in Resources */,
 				DA0B92EE191177000005028F /* Main.storyboard in Resources */,
-				DA0B93BC19117C260005028F /* test-hand.png in Resources */,
-				DA831C3319185801008B84F6 /* Green-Monster.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA11EA2E19188FB200C89528 /* MRCameraOverlayView.m in Sources */,
 				DA0B92E7191176FF0005028F /* main.m in Sources */,
 				DA0B93EE1911C9DF0005028F /* MRPhotoChooserViewController.m in Sources */,
 				DA0B92F1191177000005028F /* MRResultsViewController.m in Sources */,

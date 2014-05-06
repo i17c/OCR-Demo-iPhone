@@ -9,15 +9,19 @@
 #import "MRPhotoChooserViewController.h"
 #import "MRResultsViewController.h"
 #import "MRTesseract.h"
+#import "MRCameraOverlayView.h"
 
 @interface MRPhotoChooserViewController ()
 @property (strong, nonatomic) UIImage *chosenImage;
+@property (strong, nonatomic) UIImage *placeholderImage;
 @property (strong, nonatomic) IBOutlet UIImageView *selectedImageView;
 @property (weak, nonatomic) IBOutlet UIButton *chooseImageButton;
 @property (strong, nonatomic) IBOutlet UILabel *helpLabel;
 @property (strong, nonatomic) IBOutlet UIButton *incorrectImageButton;
 @property (strong, nonatomic) IBOutlet UIButton *correctImageButton;
 @property (strong, nonatomic) NSMutableDictionary *dictionary;
+@property (strong, nonatomic) MRCameraOverlayView *overlayView;
+
 - (void)showImageButtonsAfterSelection:(bool)correctImage;
 - (IBAction)chooseImageButtonPressed:(id)sender;
 - (IBAction)correctImageButtonPressed:(id)sender;
@@ -27,18 +31,25 @@
 
 @implementation MRPhotoChooserViewController
 
-- (IBAction)chooseImageButtonPressed:(id)sender {
-    NSLog(@"Image button pressed");
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.delegate = self;
-    if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-    } else {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-    }
-    [self presentViewController:imagePicker animated:YES completion:nil];
+#pragma mark - View Methods
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.placeholderImage = [UIImage imageNamed:kPlaceholderImageFilename];
+    self.selectedImageView.layer.borderWidth = 5;
+    self.selectedImageView.layer.cornerRadius = 2;
+    self.selectedImageView.layer.borderColor = [[UIColor blackColor] CGColor];
+    
+    self.overlayView = [[MRCameraOverlayView alloc] init];
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 #pragma mark Image Picker Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -59,14 +70,17 @@
 #pragma mark after image is selected
 
 - (IBAction)correctImageButtonPressed:(id)sender {
-    MRTesseract *tesseract = [[MRTesseract alloc] init];
-    NSString *recognizedText = [tesseract readImage: self.chosenImage];
+//    MRTesseract *tesseract = [[MRTesseract alloc] init];    
+    //TODO: FIX THE RECOGNIZED TEXT
+    //NSString *recognizedText = [tesseract readImage: self.chosenImage];
+    NSString *recognizedText = @"1600 Pennsylvania Ave NW \n 202-456-1111 \n Chicago, Illinois";
     self.dictionary = [self groupWordsByType:recognizedText];
+
     [self performSegueWithIdentifier:@"showResults" sender:self];
 }
 - (IBAction)incorrectImageButtonPressed:(id)sender {
     [self showImageButtonsAfterSelection:NO];
-    self.selectedImageView.image = [UIImage imageNamed:@"placeholder.png"];
+    self.selectedImageView.image = self.placeholderImage;
     self.helpLabel.text = kHelpTextBeforeImageSelected;
 }
 
@@ -79,20 +93,6 @@
     self.chooseImageButton.hidden = correctImage;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.selectedImageView.layer.borderWidth = 5;
-    self.selectedImageView.layer.cornerRadius = 2;
-    self.selectedImageView.layer.borderColor = [[UIColor blackColor] CGColor];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark NSDataDetector
 /*
  Goes through each word in the text passed in and groups the words by type
@@ -100,10 +100,12 @@
  @param text - the text to be checked for the different types
  */
 - (NSMutableDictionary *)groupWordsByType:(NSString *)text {
-    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dictionary = nil;
+    
     //If there is no text passed in/read by the ocr scanner, then return
     //an empty dictionary otherwise the nsdatadetector will crash
     if (text.length > 0) {
+        dictionary = [[NSMutableDictionary alloc] init];
         NSError *error = nil;
         NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeAddress | NSTextCheckingTypePhoneNumber
                                     | NSTextCheckingTypeLink error:&error];
@@ -123,6 +125,23 @@
     }
     return dictionary;
 }
+
+#pragma mark - Actions
+
+- (IBAction)chooseImageButtonPressed:(id)sender {
+    NSLog(@"Image button pressed");
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+        imagePicker.cameraOverlayView = self.overlayView;
+    } else {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    }
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
 
 #pragma mark - Navigation
 
