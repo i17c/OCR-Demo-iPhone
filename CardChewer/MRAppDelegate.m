@@ -7,20 +7,21 @@
 //
 
 #import "MRAppDelegate.h"
-
+#define COLOR(r,g,b,a) [UIColor colorWithRed:(r/(float)255) green:(g/(float)255) blue:(b/(float)255) alpha:a]
 @implementation MRAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     //98	201	171
+    //Light navigaiton bar
+    UIColor *backgroundColor = COLOR(59, 59, 59, 1.0);
+    UIColor *textColor = [UIColor whiteColor];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//	[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:98.0/255.0 green:201.0/255.0 blue:171.0/255.0 alpha:1.0f]];
-	[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:36.0/255.0 green:34.00/255.0 blue:31.0/255.0 alpha:1.0f]];
-    UIColor *textColor = [UIColor colorWithRed:196.0/255.0 green:210.0/255.0 blue:242.0/255 alpha:1.0f];
-//	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+	[[UINavigationBar appearance] setBarTintColor:backgroundColor];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: textColor}];
-    self.window.tintColor = textColor;
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
+    self.window.tintColor = [UIColor whiteColor];
     return YES;
 }
 							

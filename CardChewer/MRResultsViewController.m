@@ -8,16 +8,32 @@
 
 #import "MRResultsViewController.h"
 #import "MRTesseract.h"
-
+#import "JLActionSheet.h"
+#import <AddressBookUI/AddressBookUI.h>
+#import "MRAddressBookViewController.h"
 #define LOG(fmt, ...) NSLog((@"%s " fmt), __PRETTY_FUNCTION__,##__VA_ARGS__)
 static NSString *kTypeCellID = @"typeCell";
 static NSString *kTypePickerID = @"typePicker";
 static NSString *kOtherCell = @"otherCell";
 
+
+enum TypePickerRowValue {
+    kFirstNameRow = 0,
+    kLastNameRow,
+    kPhoneNumberRow,
+    kAddressRow,
+    kCityRow,
+    kStateRow,
+    kCountryRow,
+    kLinkRow
+};
+
+
 #pragma mark -
 
 @interface MRResultsViewController () <UITableViewDataSource, UITableViewDelegate,
-                                            UIPickerViewDataSource, UIPickerViewDelegate>
+                                            UIPickerViewDataSource, UIPickerViewDelegate,
+                                                ABNewPersonViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 //@property (nonatomic, strong) IBOutlet UIImageView *imageView;
@@ -29,8 +45,8 @@ static NSString *kOtherCell = @"otherCell";
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *doneButton;
 @property (nonatomic, strong) NSArray *pickerValues;
 
-
 - (NSInteger)convertTypeKeyToTypeStringIndex:(id)typeKey;
+- (IBAction)saveBarButtonTapped:(id)sender;
 @end
 
 #pragma mark -
@@ -55,10 +71,10 @@ static NSString *kOtherCell = @"otherCell";
     
         }
     }
-    NSMutableDictionary *itemFour = [@{ kTitleKey : @"(other item1)" } mutableCopy];
-    NSMutableDictionary *itemFive = [@{ kTitleKey : @"(other item2)" } mutableCopy];
-    [self.dataArray addObject:itemFour];
-    [self.dataArray addObject:itemFive];
+//    NSMutableDictionary *itemFour = [@{ kTitleKey : @"(other item1)" } mutableCopy];
+//    NSMutableDictionary *itemFive = [@{ kTitleKey : @"(other item2)" } mutableCopy];
+//    [self.dataArray addObject:itemFour];
+//    [self.dataArray addObject:itemFive];
     
     UITableViewCell *pickerViewCellToCheck = [self.tableView dequeueReusableCellWithIdentifier:kTypePickerID];
     self.typePickerCellRowHeight = pickerViewCellToCheck.frame.size.height;
@@ -369,21 +385,33 @@ NSUInteger DeviceSystemMajorVersion() {
 - (NSInteger)convertTypeKeyToTypeStringIndex:(id)key {
     NSInteger index = -1;
     if ([key isEqualToString:@"First Name"])
-        index = 0;
+        index = kFirstNameRow;
     else if ([key isEqualToString:kPhoneNumberKey])
-        index = 2;
+        index = kPhoneNumberRow;
     else if (key == NSTextCheckingStreetKey)
-        index = 3;
+        index = kAddressRow;
     else if (key == NSTextCheckingCityKey)
-        index = 4;
+        index = kCityRow;
     else if (key == NSTextCheckingStateKey)
-        index = 5;
+        index = kStateRow;
     else if (key == NSTextCheckingCountryKey)
-        index = 6;
+        index = kCountryRow;
     else if ([key isEqualToString:kLinkKey])
-        index = 7;
+        index = kLinkRow;
     else
         index = NSNotFound;
     return index;
+}
+
+
+#pragma mark - Actions
+- (IBAction)saveBarButtonTapped:(id)sender {
+    MRAddressBookViewController *addressBookViewController = [[MRAddressBookViewController alloc] init];
+    addressBookViewController.dictionary = self.dictionary;
+    NSArray *buttonTitles = @[@"Create New Contact", @"Add To Existing Contact"];
+    JLActionSheet *actionSheet = [[JLActionSheet alloc] initWithTitle:@"Save Contact" delegate:addressBookViewController cancelButtonTitle:@"Cancel" otherButtonTitles:buttonTitles];
+    actionSheet.style = JLSTYLE_STEEL;
+    [actionSheet showFromBarItem:self.doneButton onViewController:self];
+    actionSheet = nil;
 }
 @end

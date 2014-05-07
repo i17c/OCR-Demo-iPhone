@@ -19,3 +19,4 @@ NSString * const kHelpTextAfterImageSelected       = @"Is this the right photo?"
 NSString * const kHelpTextBeforeResultsAreVerified = @"Please verify that the information is correct.";
 NSString * const kOverlayGraphicFilename           = @"overlay.png";
 NSString * const kPlaceholderImageFilename         = @"placeholder.png";
+

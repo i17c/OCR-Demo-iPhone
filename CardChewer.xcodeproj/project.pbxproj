@@ -25,7 +25,12 @@
 		DA0B93E01911873F0005028F /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = DA0B93DF1911873F0005028F /* tessdata */; };
 		DA0B93EE1911C9DF0005028F /* MRPhotoChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */; };
 		DA11EA2E19188FB200C89528 /* MRCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA11EA2D19188FB200C89528 /* MRCameraOverlayView.m */; };
+		DA2D75CC1919A16800A92687 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2D75CB1919A16800A92687 /* AddressBookUI.framework */; };
 		DA32394B19153AA800CF3172 /* MRTesseract.m in Sources */ = {isa = PBXBuildFile; fileRef = DA32394A19153AA800CF3172 /* MRTesseract.m */; };
+		DA64D6041919997500AE0901 /* JLActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA64D5FF1919997500AE0901 /* JLActionButton.m */; };
+		DA64D6051919997500AE0901 /* JLActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA64D6011919997500AE0901 /* JLActionSheet.m */; };
+		DA64D6061919997500AE0901 /* JLActionSheetStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = DA64D6031919997500AE0901 /* JLActionSheetStyle.m */; };
+		DA67102C1919EF84002620D0 /* MRAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67102B1919EF84002620D0 /* MRAddressBookViewController.m */; };
 		DA831C31191857A0008B84F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA831C30191857A0008B84F6 /* Images.xcassets */; };
 		DA831C3619185945008B84F6 /* MRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA831C3519185945008B84F6 /* MRConstants.m */; };
 /* End PBXBuildFile section */
@@ -66,9 +71,18 @@
 		DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRPhotoChooserViewController.m; sourceTree = "<group>"; };
 		DA11EA2C19188FB100C89528 /* MRCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCameraOverlayView.h; sourceTree = "<group>"; };
 		DA11EA2D19188FB200C89528 /* MRCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCameraOverlayView.m; sourceTree = "<group>"; };
+		DA2D75CB1919A16800A92687 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		DA32394919153AA800CF3172 /* MRTesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTesseract.h; sourceTree = "<group>"; };
 		DA32394A19153AA800CF3172 /* MRTesseract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTesseract.m; sourceTree = "<group>"; };
 		DA3C01081914150B0058C962 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DA64D5FE1919997500AE0901 /* JLActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLActionButton.h; sourceTree = "<group>"; };
+		DA64D5FF1919997500AE0901 /* JLActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLActionButton.m; sourceTree = "<group>"; };
+		DA64D6001919997500AE0901 /* JLActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLActionSheet.h; sourceTree = "<group>"; };
+		DA64D6011919997500AE0901 /* JLActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLActionSheet.m; sourceTree = "<group>"; };
+		DA64D6021919997500AE0901 /* JLActionSheetStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLActionSheetStyle.h; sourceTree = "<group>"; };
+		DA64D6031919997500AE0901 /* JLActionSheetStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLActionSheetStyle.m; sourceTree = "<group>"; };
+		DA67102A1919EF84002620D0 /* MRAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRAddressBookViewController.h; sourceTree = "<group>"; };
+		DA67102B1919EF84002620D0 /* MRAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRAddressBookViewController.m; sourceTree = "<group>"; };
 		DA831C30191857A0008B84F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DA831C3419185945008B84F6 /* MRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRConstants.h; sourceTree = "<group>"; };
 		DA831C3519185945008B84F6 /* MRConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRConstants.m; sourceTree = "<group>"; };
@@ -79,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2D75CC1919A16800A92687 /* AddressBookUI.framework in Frameworks */,
 				DA0B9312191177840005028F /* libstdc++.6.0.9.dylib in Frameworks */,
 				DA0B9310191177420005028F /* TesseractOCR.framework in Frameworks */,
 				DA0B92DD191176FF0005028F /* CoreGraphics.framework in Frameworks */,
@@ -122,6 +137,7 @@
 		DA0B92D9191176FF0005028F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA2D75CB1919A16800A92687 /* AddressBookUI.framework */,
 				DA3C01081914150B0058C962 /* QuartzCore.framework */,
 				DA0B9311191177840005028F /* libstdc++.6.0.9.dylib */,
 				DA0B930F191177420005028F /* TesseractOCR.framework */,
@@ -182,6 +198,7 @@
 		DA11EA311918935A00C89528 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DA64D6071919997A00AE0901 /* JLActionSheet */,
 				DA0B92EC191177000005028F /* Main.storyboard */,
 				DA11EA2C19188FB100C89528 /* MRCameraOverlayView.h */,
 				DA11EA2D19188FB200C89528 /* MRCameraOverlayView.m */,
@@ -205,8 +222,23 @@
 				DA0B93ED1911C9DF0005028F /* MRPhotoChooserViewController.m */,
 				DA0B92EF191177000005028F /* MRResultsViewController.h */,
 				DA0B92F0191177000005028F /* MRResultsViewController.m */,
+				DA67102A1919EF84002620D0 /* MRAddressBookViewController.h */,
+				DA67102B1919EF84002620D0 /* MRAddressBookViewController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		DA64D6071919997A00AE0901 /* JLActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				DA64D5FE1919997500AE0901 /* JLActionButton.h */,
+				DA64D5FF1919997500AE0901 /* JLActionButton.m */,
+				DA64D6001919997500AE0901 /* JLActionSheet.h */,
+				DA64D6011919997500AE0901 /* JLActionSheet.m */,
+				DA64D6021919997500AE0901 /* JLActionSheetStyle.h */,
+				DA64D6031919997500AE0901 /* JLActionSheetStyle.m */,
+			);
+			name = JLActionSheet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,9 +341,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA11EA2E19188FB200C89528 /* MRCameraOverlayView.m in Sources */,
+				DA64D6061919997500AE0901 /* JLActionSheetStyle.m in Sources */,
 				DA0B92E7191176FF0005028F /* main.m in Sources */,
 				DA0B93EE1911C9DF0005028F /* MRPhotoChooserViewController.m in Sources */,
+				DA64D6051919997500AE0901 /* JLActionSheet.m in Sources */,
+				DA64D6041919997500AE0901 /* JLActionButton.m in Sources */,
 				DA0B92F1191177000005028F /* MRResultsViewController.m in Sources */,
+				DA67102C1919EF84002620D0 /* MRAddressBookViewController.m in Sources */,
 				DA32394B19153AA800CF3172 /* MRTesseract.m in Sources */,
 				DA831C3619185945008B84F6 /* MRConstants.m in Sources */,
 				DA0B92EB191177000005028F /* MRAppDelegate.m in Sources */,
