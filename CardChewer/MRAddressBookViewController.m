@@ -8,6 +8,14 @@
 
 #import "MRAddressBookViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
+
+enum SaveActionSheet {
+    kCancelRow = 0,
+    kAddToExistingContactRow,
+    kCreateNewContactRow,
+};
+
+
 @interface MRAddressBookViewController () <ABNewPersonViewControllerDelegate>
 
 @end
@@ -42,9 +50,8 @@
 
 // Called when the action button is initially clicked
 - (void) actionSheet:(JLActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == actionSheet.cancelButtonIndex)
-        NSLog(@"Is cancel button");
-    if (buttonIndex == 2) {
+    
+    if (buttonIndex == kCreateNewContactRow) {
         NSLog(@"Create a new contact");
         ABRecordRef newPerson = ABPersonCreate();
         CFErrorRef error = NULL;
@@ -78,12 +85,13 @@
         ABNewPersonViewController *contactPicker = [[ABNewPersonViewController alloc] init];
         contactPicker.displayedPerson = newPerson;
         contactPicker.newPersonViewDelegate = self;
-        [self.navigationController pushViewController:contactPicker animated:YES];
+        NSLog(@"Contact Picker created");
+        [self.navigationController pushViewController:contactPicker animated:NO];
         CFRelease(newPerson);
         CFRelease(value);
-    } else if (buttonIndex == 1) {
+    } else if (buttonIndex == kAddToExistingContactRow) {
         NSLog(@"Add to an existing contact");
-    } else if (buttonIndex == actionSheet.cancelButtonIndex) {
+    } else if (buttonIndex == kCancelRow) {
         NSLog(@"Cancel button pressed");
     }
 }
